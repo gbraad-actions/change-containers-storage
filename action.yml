@@ -1,0 +1,11 @@
+name: "Change containers storage"
+description: "Move containers storage to /mnt on runner"
+author: "Gerard Braad <me@gbraad.nl>"
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        sudo mkdir -p /mnt/var/lib/containers
+        sudo mount -o bind /mnt/var/lib/containers /var/lib/containers
+        sudo mkdir /var/lib/containers/storage
+      shell: bash
